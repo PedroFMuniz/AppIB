@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
-const Home = () => {
+const Home = ({navigation}) => {
     const getBorboleta = () =>{
         const foto = '../img/borboleta.png';
         return(require(foto));
     };
     const getFoto = () =>{
-        const foto = '../src/img/foto.png';
+        const foto = '../img/foto.png';
         return(require(foto));
     };
     const getText = () =>{
@@ -31,13 +31,13 @@ const Home = () => {
         return(count);
     }
     const btnClientes = () =>{
-
+        navigation.navigate('Clientes');
     }
     const btnVendas = () =>{
-
+        navigation.navigate('Vendas');
     }
     const btnPerfil = () =>{
-
+        navigation.navigate('Perfil');
     }
     return(
         <View style={styles.container}>
@@ -67,15 +67,15 @@ const Home = () => {
             <View style={styles.containerElements}>
                 <View style={styles.containerMenu}>
                     <TouchableOpacity style={styles.botaoMenu} onPress={btnClientes}>
-                        <Image style={{width: 42, height: 64}} source={require('../src/img/btnClientes.png')}/>
+                        <Image style={{width: 42, height: 64}} source={require('../img/btnClientes.png')}/>
                         <Text>Clientes</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.botaoMenu} onPress={btnVendas}>
-                        <Image style={{width: 90, height: 74}} source={require('../src/img/btnVendas.png')}/>
+                        <Image style={{width: 90, height: 74}} source={require('../img/btnVendas.png')}/>
                         <Text>Vendas</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.botaoMenu} onPress={btnPerfil}>
-                        <Image style={{width: 68, height: 68}} source={require('../src/img/btnPerfil.png')}/>
+                        <Image style={{width: 68, height: 68}} source={require('../img/btnPerfil.png')}/>
                         <Text>Perfil</Text>
                     </TouchableOpacity>
                 </View>

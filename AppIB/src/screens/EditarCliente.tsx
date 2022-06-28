@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
-const EditarCliente = () =>{
+const EditarCliente = ({navigation}) =>{
     const [nome, setNome] = useState('');
     const SaveNome = () =>{
-
+        navigation.navigate('Cliente')
     }
     return(
         <KeyboardAvoidingView style={styles.container}>

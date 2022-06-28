@@ -11,7 +11,7 @@ const Login = ({navigation}) => {
   return(
   <KeyboardAvoidingView style={styles.viewPrincipal}>
     <View style={styles.views}>
-      <Image style={styles.logo} source={require('./src/img/logo.png')}/>
+      <Image style={styles.logo} source={require('../img/logo.png')}/>
       <TextInput style={styles.entradas} placeholder='Login' onChangeText={(usuario) => setUsuario(usuario)}/>
       <TextInput style={styles.entradas} placeholder='Senha' secureTextEntry={true} onChangeText={(senha) => setSenha(senha)}/>
       <TouchableOpacity style={styles.botao} onPress={LoginBotao}>

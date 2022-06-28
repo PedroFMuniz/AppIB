@@ -22,6 +22,15 @@ function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Perfil" component={Perfil} />
+        <Stack.Screen name="Cliente" component={Cliente} />
+        <Stack.Screen name="Clientes" component={Clientes} />
+        <Stack.Screen name="EditarCliente" component={EditarCliente} />
+        <Stack.Screen name="NovaCliente" component={NovaCliente} />
+        <Stack.Screen name="Venda" component={Venda} />
+        <Stack.Screen name="Vendas" component={Vendas} />
+        <Stack.Screen name="EditarVenda" component={EditarVenda} />
+        <Stack.Screen name="NovaVenda" component={NovaVenda} />
       </Stack.Navigator>
     </NavigationContainer>
   );

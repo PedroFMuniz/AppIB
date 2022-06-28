@@ -1,7 +1,7 @@
 import React from "react";
 import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-const Vendas = () =>{
+const Vendas = ({navigation}) =>{
     const GetData = () =>{
         const data = [
             {
@@ -38,7 +38,7 @@ const Vendas = () =>{
         return(data);
     }
     const BtnCliente = () =>{
-
+        navigation.navigate('Cliente');
     }
     const RenderItem = ({data}) =>{
         return(

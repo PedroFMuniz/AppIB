@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image } from 'react-native';
 
-const Cliente = () =>{
+const Cliente = ({navigation}) =>{
     const getNome = () =>{
         const nome = "Alê";
         return(nome);
@@ -108,7 +108,7 @@ const Cliente = () =>{
 
     }
     const Editar = () =>{
-        
+        navigation.navigate('EditarCliente');
     }
     return(
         <View style={styles.container}>
@@ -121,7 +121,7 @@ const Cliente = () =>{
                     <View style={{flexDirection: 'row', width:'100%'}}>
                         <Text style={{fontSize: 32, alignSelf:'flex-start', marginHorizontal: 15}}>{getNome()}</Text>
                         <TouchableOpacity style={{width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent:'center', backgroundColor:'#F3ABC6', marginTop:5}} onPress={Editar}>
-                            <Image style={{width: 20, height: 20}} source={require('./src/img/Lapis.png')}/>
+                            <Image style={{width: 20, height: 20}} source={require('../img/Lapis.png')}/>
                         </TouchableOpacity>
                     </View>
                 </View>

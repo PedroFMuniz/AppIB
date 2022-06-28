@@ -3,11 +3,11 @@ import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 
 const Perfil = () => {
     const getBorboleta = () =>{
-        const foto = './src/img/borboleta.png';
+        const foto = '../img/borboleta.png';
         return(require(foto));
     };
     const getFoto = () =>{
-        const foto = './src/img/foto.png';
+        const foto = '../img/foto.png';
         return(require(foto));
     };
     const getText = () =>{

@@ -4,7 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MaskInput, { Masks } from 'react-native-mask-input';
 
-const NovaVenda = () =>{
+const NovaVenda = ({navigation}) =>{
     const [open, setOpen] = useState(false);
     const [cliente, setCliente] = useState(null);
     const [valor, setValor] = useState('')
@@ -26,7 +26,7 @@ const NovaVenda = () =>{
         setShow(false);
     }
     const SaveVenda = () =>{
-        Alert.alert('Informações', String(cliente) + '\n' +  + '\n' + String(parseFloat(valor)/100))
+        navigation.navigate('Venda');
     }
     return(
         <KeyboardAvoidingView style={styles.container}>
