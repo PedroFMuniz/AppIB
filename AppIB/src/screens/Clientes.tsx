@@ -1,5 +1,5 @@
-import React from "react";
-import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from "react";
+import { View, FlatList, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 
 const Clientes = ({navigation}) =>{
     const GetData = () =>{
@@ -32,14 +32,14 @@ const Clientes = ({navigation}) =>{
         ];
         return(data);
     }
-    const BtnCliente = () =>{
-        navigation.navigate('Cliente')
+    const BtnCliente = (id) =>{
+        Alert.alert('id', id.id);
     }
-    const RenderItem = ({data}) =>{
+    const RenderItem = ({item}) =>{
         return(
-            <TouchableOpacity style={styles.elementoLista} onPress={BtnCliente}>
-                <Text style={{fontSize:30, fontWeight: 'bold'}}>{data.nome}</Text>
-                <Text style={{fontSize:30}}>Compras: R${data.compras}</Text>
+            <TouchableOpacity style={styles.elementoLista} onPress={() => BtnCliente(item)}>
+                <Text style={{fontSize:30, fontWeight: 'bold'}}>{item.nome}</Text>
+                <Text style={{fontSize:30}}>Compras: R${item.compras}</Text>
             </TouchableOpacity>
         )
     }
@@ -52,7 +52,7 @@ const Clientes = ({navigation}) =>{
                 <FlatList
                     data={GetData()}
                     keyExtractor={item => String(item.id)}
-                    renderItem={ ({ item }) => <RenderItem data={ item } />}
+                    renderItem={RenderItem}
                 />
             </View>
         </View>

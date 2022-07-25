@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AsyncStorageStatic } from 'react-native';
 import Cliente from './src/screens/Cliente';
 import Clientes from './src/screens/Clientes';
 import NovaCliente from './src/screens/NovaCliente';
@@ -15,11 +17,10 @@ import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 
 const Stack = createNativeStackNavigator();
-
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown:false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Perfil" component={Perfil} />
