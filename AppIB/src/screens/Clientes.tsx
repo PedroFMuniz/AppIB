@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Clientes = ({navigation}) =>{
+    const StoreData = async (value) =>{
+        await AsyncStorage.setItem('idCliente', value);
+    }
     const GetData = () =>{
         const data = [
             {
@@ -33,7 +37,8 @@ const Clientes = ({navigation}) =>{
         return(data);
     }
     const BtnCliente = (id) =>{
-        Alert.alert('id', id.id);
+        StoreData(id.id);
+        navigation.navigate('Cliente');
     }
     const RenderItem = ({item}) =>{
         return(

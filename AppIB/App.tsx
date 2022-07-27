@@ -15,12 +15,22 @@ import EditarVenda from './src/screens/EditarVenda';
 import Perfil from './src/screens/Perfil';
 import Home from './src/screens/Home';
 import Login from './src/screens/Login';
+import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 function App() {
+  const [logado, setLogado] = useState(null);
+  const [home, setHome] = useState(null);
+  const getData = async () =>{
+    const value = await AsyncStorage.getItem('logado');
+    setLogado(value);
+  }
+  React.useEffect(()=>{
+    logado == 'true' ? setHome('Home') : setHome('Login');  
+  })
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown:false}}>
+      <Stack.Navigator initialRouteName={home} screenOptions={{headerShown:false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Perfil" component={Perfil} />

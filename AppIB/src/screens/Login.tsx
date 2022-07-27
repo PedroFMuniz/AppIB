@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
+  const StoreData = async (value,value2) =>{
+    await AsyncStorage.setItem('idUsuario', value);
+    await AsyncStorage.setItem('Logado', value2);
+}
   const LoginBotao = () =>{
-    navigation.navigate('Home')
+    const idUsuario = "Teste";
+    StoreData(idUsuario, true);
+    navigation.navigate('Home');
   };
   return(
   <KeyboardAvoidingView style={styles.viewPrincipal}>

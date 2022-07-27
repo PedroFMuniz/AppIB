@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Cliente = ({navigation}) =>{
+    const [idCliente, setIdCliente] = useState(null);
+    useEffect(() => {
+        getId();
+    })
+    const getId = async () =>{
+        const value = await AsyncStorage.getItem('idCliente');
+        setIdCliente(value);
+    }
     const getNome = () =>{
-        const nome = "Alê";
+        const nome = "Teste";
         return(nome);
     }
     const getData = () =>{
