@@ -45,6 +45,9 @@ const Vendas = ({navigation}) =>{
         StoreData(id.id);
         navigation.navigate("Venda");
     }
+    const BtnNovaVenda = () =>{
+        navigation.navigate("NovaVenda");
+    }
     const RenderItem = ({item}) =>{
         return(
             <TouchableOpacity style={styles.elementoLista} onPress={() => BtnCliente(item)}>
@@ -65,6 +68,11 @@ const Vendas = ({navigation}) =>{
                     keyExtractor={item => String(item.id)}
                     renderItem={RenderItem}
                 />
+            </View>
+            <View>
+                <TouchableOpacity style={{justifyContent:'center', alignItems:'center', paddingTop:20}} onPress={() => BtnNovaVenda()}>
+                    <Text>Nova Venda</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )

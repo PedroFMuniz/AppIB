@@ -26,11 +26,11 @@ function App() {
     setLogado(value);
   }
   React.useEffect(()=>{
-    logado == 'true' ? setHome('Home') : setHome('Login');  
+    //logado == 'true' ? setHome('Home') : setHome('Login');  
   })
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={home} screenOptions={{headerShown:false}}>
+      <Stack.Navigator initialRouteName={'Login'} screenOptions={{headerShown:false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Perfil" component={Perfil} />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Cliente} from '../classes/Cliente';
 
 const Login = ({navigation}) => {
   const [usuario, setUsuario] = useState("");
@@ -11,9 +12,11 @@ const Login = ({navigation}) => {
     await AsyncStorage.setItem('Logado', value2);
 }
   const LoginBotao = () =>{
-    const idUsuario = "Teste";
-    StoreData(idUsuario, true);
-    navigation.navigate('Home');
+    //const idUsuario = "Teste";
+    //StoreData(idUsuario, true);
+    //navigation.navigate('Home');
+    let cliente = new Cliente(0, 'teste');
+    cliente.Buscar();
   };
   return(
   <KeyboardAvoidingView style={styles.viewPrincipal}>

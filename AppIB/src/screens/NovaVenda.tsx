@@ -26,7 +26,11 @@ const NovaVenda = ({navigation}) =>{
         setShow(false);
     }
     const SaveVenda = () =>{
-        navigation.navigate('Venda');
+        var valorReal:number = + valor;
+        var dataReal = data.split('/');
+        let prazo:Date = new Date(dataReal[2]+'/'+dataReal[1]+'/'+dataReal[0]);
+        let date:Date = new Date();
+        //navigation.navigate('Venda');
     }
     return(
         <KeyboardAvoidingView style={styles.container}>
