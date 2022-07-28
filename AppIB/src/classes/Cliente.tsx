@@ -1,5 +1,5 @@
 import Firebase from '../config';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, setDoc, where } from "firebase/firestore";
 
 export class Cliente{
     private id:number;
@@ -37,20 +37,34 @@ export class Cliente{
         return(listaClientes);
     }
 
-    BuscarUnico(id:number):Cliente{
-        let cliente = new Cliente();
+    async BuscarUnico(id:number):Promise<Cliente>{
+        const clientesRef = collection(Firebase, "Clientes");
+        const q = query(clientesRef, where("id", "==", id));
+        const clientes = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            clientes.push({ ...doc.data()});
+        });
+        const c = clientes[0];
+        let cliente = new Cliente(c.id,c.nome);
         return(cliente);
     }
 
-    Gravar(cliente:Cliente):boolean{
-
+    async Gravar(cliente:Cliente):Promise<void>{
+        await setDoc(doc(Firebase, "Clientes", cliente.id.toString()), {
+            id:cliente.id,
+            nome:cliente.nome,
+          });
     }
 
-    Editar(cliente:Cliente):boolean{
-
+    async Editar(cliente:Cliente):Promise<void>{
+        await setDoc(doc(Firebase, "Clientes", cliente.id.toString()), {
+            id:cliente.id,
+            nome:cliente.nome,
+          });
     }
 
-    Deletar(cliente:Cliente):boolean{
-
+    async Deletar(cliente:Cliente):Promise<void>{
+        await deleteDoc(doc(Firebase, "Clientes", cliente.id.toString()));
     }
 }

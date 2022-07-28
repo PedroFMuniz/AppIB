@@ -15,8 +15,8 @@ const Login = ({navigation}) => {
     //const idUsuario = "Teste";
     //StoreData(idUsuario, true);
     //navigation.navigate('Home');
-    let cliente = new Cliente(0, 'teste');
-    cliente.Buscar();
+    let cliente = new Cliente(2, 'Jorge');
+    cliente.Deletar(cliente);
   };
   return(
   <KeyboardAvoidingView style={styles.viewPrincipal}>
