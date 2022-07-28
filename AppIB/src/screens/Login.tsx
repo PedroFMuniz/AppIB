@@ -3,6 +3,8 @@ import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, StyleShe
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Cliente} from '../classes/Cliente';
+import {Usuario} from '../classes/Usuario';
+import {Venda} from '../classes/Venda';
 
 const Login = ({navigation}) => {
   const [usuario, setUsuario] = useState("");
@@ -10,13 +12,16 @@ const Login = ({navigation}) => {
   const StoreData = async (value,value2) =>{
     await AsyncStorage.setItem('idUsuario', value);
     await AsyncStorage.setItem('Logado', value2);
-}
-  const LoginBotao = () =>{
+  }
+  const LoginBotao = async () =>{
     //const idUsuario = "Teste";
     //StoreData(idUsuario, true);
     //navigation.navigate('Home');
-    let cliente = new Cliente(2, 'Jorge');
-    cliente.Deletar(cliente);
+    let usuario = new Usuario(0, 'padrao', 'padrao', 'pradrao')
+    let cliente = new Cliente(0, 'Jorge', usuario);
+    let date = new Date();
+    let venda = new Venda(0, cliente, usuario, 0, date, date);
+    console.log(await venda.BuscarUnico(0));
   };
   return(
   <KeyboardAvoidingView style={styles.viewPrincipal}>

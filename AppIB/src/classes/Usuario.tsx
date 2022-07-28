@@ -1,4 +1,7 @@
-class Usuario{
+import { collection, deleteDoc, doc, getDocs, query, setDoc, where } from "firebase/firestore";
+import Firebase from '../config';
+
+export class Usuario{
     private login:string;
     private senha:string;
     private id:number;
@@ -37,25 +40,52 @@ class Usuario{
         this.senha = senha;
     }
 
-    Buscar():Array<Usuario>{
+    async Buscar():Promise<Array<Usuario>>{
         let listaUsuarios = new Array<Usuario>();
+        const usuarios = [];
+        const querySnapshot = await getDocs(collection(Firebase, "Usuarios"));
+        querySnapshot.forEach((doc) => {
+            usuarios.push({ ...doc.data()});
+        });
+        usuarios.forEach((item) =>{
+            let usuario = new Usuario(item.id, item.nome, item.login, item.senha);
+            listaUsuarios.push(usuario);
+        })
         return(listaUsuarios);
     }
-
-    BuscarUnico(id:number):Usuario{
-        let usuario = new Usuario();
+    
+    async BuscarUnico(id:number):Promise<Usuario>{
+        const usuariosRef = collection(Firebase, "Usuarios");
+        const q = query(usuariosRef, where("id", "==", id));
+        const usuarios = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            usuarios .push({ ...doc.data()});
+        });
+        const c = usuarios[0];
+        let usuario = new Usuario(c.id,c.nome,c.login,c.senha);
         return(usuario);
     }
-
-    Gravar(usuario:Usuario):boolean{
-
-    }
-
-    Editar(usuario:Usuario):boolean{
-
+    
+    async Gravar(usuario:Usuario):Promise<void>{
+        await setDoc(doc(Firebase, "Usuarios", usuario.id.toString()), {
+            id:usuario.id,
+            nome:usuario.nome,
+            login:usuario.login,
+            senha:usuario.senha,
+          });
     }
     
-    Deletar(usuario:Usuario):boolean{
-
+    async Editar(usuario:Usuario):Promise<void>{
+        await setDoc(doc(Firebase, "Usuarios", usuario.id.toString()), {
+            id:usuario.id,
+            nome:usuario.nome,
+            login:usuario.login,
+            senha:usuario.senha,
+          });
+    }
+    
+    async Deletar(usuario:Usuario):Promise<void>{
+        await deleteDoc(doc(Firebase, "Usuarios", usuario.id.toString()));
     }
 }
